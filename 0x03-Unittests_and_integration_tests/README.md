@@ -1,5 +1,5 @@
-# 0x03. Unittests and Integration Tests
-[](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/1/f088970b450e82c881ea.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230518%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230518T102345Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=ade435f80b127eedb43a65b84a91a7151f642db301ec63dd2811f42c2629a59d)
+0x03. Unittests and Integration Tests
+=====================================
 
 Unit testing is the process of testing that a particular function returns expected results for different set of inputs. A unit test is supposed to test standard inputs and corner cases. A unit test should only test the logic defined inside the tested function. Most calls to additional functions should be mocked, especially if they make network or database calls.
 
@@ -9,32 +9,59 @@ Integration tests aim to test a code path end-to-end. In general, only low level
 
 Integration tests will test interactions between every part of your code.
 
----
+Tasks
+-----
 
-## What does each file do?
-
-Each answer is the **problem the file solves** and how to use it.
-
-### **What does `utils.py` do?**  
+### 1. What does `utils.py` do?  
 It provides **generic utilities** used by the GitHub org client: (1) **`access_nested_map(nested_map, path)`** — given a nested dict and a sequence of keys, returns the value at that path or raises `KeyError` if a key is missing; (2) **`get_json(url)`** — fetches a URL with `requests.get` and returns the JSON body; (3) **`memoize(fn)`** — a decorator that caches the result of a method on the instance so it's only computed once. You **don't edit** this file; you **unit-test** it in `test_utils.py`.
 
-### **What does `client.py` do?**  
+**Repo:**
+
+-   GitHub repository: `alx-backend-python`
+-   Directory: `0x03-Unittests_and_integration_tests`
+-   File: `utils.py`
+
+### 2. What does `client.py` do?  
 It defines **`GithubOrgClient`**: a client that fetches a GitHub org's info and public repos from the GitHub API. It uses `utils.get_json`, `access_nested_map`, and `memoize`. Methods include `org`, `_public_repos_url`, `repos_payload`, `public_repos(license=...)`, and `has_license(repo, license_key)`. You **don't edit** this file; you **unit-test** and **integration-test** it in `test_client.py`.
 
-### **What does `fixtures.py` do?**  
+**Repo:**
+
+-   GitHub repository: `alx-backend-python`
+-   Directory: `0x03-Unittests_and_integration_tests`
+-   File: `client.py`
+
+### 3. What does `fixtures.py` do?  
 It holds **test data** (payloads) that look like real GitHub API responses: org payload, repos list, expected repo names, and apache2-licensed repos. Used by **integration tests** in `test_client.py` to mock `requests.get` without calling the real API.
 
-### **What does `test_utils.py` do?**  
+**Repo:**
+
+-   GitHub repository: `alx-backend-python`
+-   Directory: `0x03-Unittests_and_integration_tests`
+-   File: `fixtures.py`
+
+### 4. What does `test_utils.py` do?  
 It **unit-tests** `utils.py`: (1) `TestAccessNestedMap` — tests `access_nested_map` with valid paths and with invalid paths (expects `KeyError`); (2) `TestGetJson` — mocks `requests.get` and checks that `get_json` returns the right payload and calls get with the right URL; (3) `TestMemoize` — mocks a method and checks it's only called once when the memoized property is accessed twice. You **write or extend** this file.
 
-### **What does `test_client.py` do?**  
+**Repo:**
+
+-   GitHub repository: `alx-backend-python`
+-   Directory: `0x03-Unittests_and_integration_tests`
+-   File: `test_utils.py`
+
+### 5. What does `test_client.py` do?  
 It **unit-tests** and **integration-tests** `client.py`: unit tests for `GithubOrgClient.org`, `_public_repos_url`, `public_repos`, `has_license` (with mocks); then integration tests using `fixtures.py` to mock HTTP and assert `public_repos` and `public_repos(license="apache-2.0")` return the expected lists. You **write or extend** this file.
 
-**Run tests:**  
-`python3 -m unittest test_utils.py`  
-`python3 -m unittest test_client.py`
+**Repo:**
+
+-   GitHub repository: `alx-backend-python`
+-   Directory: `0x03-Unittests_and_integration_tests`
+-   File: `test_client.py`
+
+**Run tests:** `python3 -m unittest test_utils.py` and `python3 -m unittest test_client.py`.
 
 ---
+
+**How to run the tests**
 
 Execute your tests with
 ```$ python -m unittest path/to/test_file.py```

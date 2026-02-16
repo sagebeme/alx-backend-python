@@ -1,17 +1,22 @@
 # ALX Backend — Python
 
+## Description
+
 Backend Python track: variable annotations, async/await, and unit/integration testing. Each folder is a separate project. This README explains **what each file does** and **how to run the exercises** so you can follow or redo them yourself.
 
----
+## Structure
 
-## Repository structure
+* [0x00. Python - Variable annotations](./0x00-python_variable_annotations)
+* [0x01. Python - Async](./0x01-python_async_function)
+* [0x02. Python - Async comprehension](./0x02-python_async_comprehension)
+* [0x03. Unittests and integration tests](./0x03-Unittests_and_integration_tests)
 
 | Folder | Topic | What you'll practice |
 |--------|--------|----------------------|
-| `0x00-python_variable_annotations` | Variable annotations | Type hints, `typing` module |
-| `0x01-python_async_function` | Async basics | `async`/`await`, coroutines, `asyncio` |
-| `0x02-python_async_comprehension` | Async comprehensions | Async generators, `async for` |
-| `0x03-Unittests_and_integration_tests` | Testing | `unittest`, mocking, fixtures, integration tests |
+| [0x00-python_variable_annotations](./0x00-python_variable_annotations) | Variable annotations | Type hints, `typing` module |
+| [0x01-python_async_function](./0x01-python_async_function) | Async basics | `async`/`await`, coroutines, `asyncio` |
+| [0x02-python_async_comprehension](./0x02-python_async_comprehension) | Async comprehensions | Async generators, `async for` |
+| [0x03-Unittests_and_integration_tests](./0x03-Unittests_and_integration_tests) | Testing | `unittest`, mocking, fixtures, integration tests |
 
 ---
 
