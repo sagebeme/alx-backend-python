@@ -9,6 +9,33 @@ Integration tests aim to test a code path end-to-end. In general, only low level
 
 Integration tests will test interactions between every part of your code.
 
+---
+
+## What does each file do?
+
+Each answer is the **problem the file solves** and how to use it.
+
+### **What does `utils.py` do?**  
+It provides **generic utilities** used by the GitHub org client: (1) **`access_nested_map(nested_map, path)`** — given a nested dict and a sequence of keys, returns the value at that path or raises `KeyError` if a key is missing; (2) **`get_json(url)`** — fetches a URL with `requests.get` and returns the JSON body; (3) **`memoize(fn)`** — a decorator that caches the result of a method on the instance so it's only computed once. You **don't edit** this file; you **unit-test** it in `test_utils.py`.
+
+### **What does `client.py` do?**  
+It defines **`GithubOrgClient`**: a client that fetches a GitHub org's info and public repos from the GitHub API. It uses `utils.get_json`, `access_nested_map`, and `memoize`. Methods include `org`, `_public_repos_url`, `repos_payload`, `public_repos(license=...)`, and `has_license(repo, license_key)`. You **don't edit** this file; you **unit-test** and **integration-test** it in `test_client.py`.
+
+### **What does `fixtures.py` do?**  
+It holds **test data** (payloads) that look like real GitHub API responses: org payload, repos list, expected repo names, and apache2-licensed repos. Used by **integration tests** in `test_client.py` to mock `requests.get` without calling the real API.
+
+### **What does `test_utils.py` do?**  
+It **unit-tests** `utils.py`: (1) `TestAccessNestedMap` — tests `access_nested_map` with valid paths and with invalid paths (expects `KeyError`); (2) `TestGetJson` — mocks `requests.get` and checks that `get_json` returns the right payload and calls get with the right URL; (3) `TestMemoize` — mocks a method and checks it's only called once when the memoized property is accessed twice. You **write or extend** this file.
+
+### **What does `test_client.py` do?**  
+It **unit-tests** and **integration-tests** `client.py`: unit tests for `GithubOrgClient.org`, `_public_repos_url`, `public_repos`, `has_license` (with mocks); then integration tests using `fixtures.py` to mock HTTP and assert `public_repos` and `public_repos(license="apache-2.0")` return the expected lists. You **write or extend** this file.
+
+**Run tests:**  
+`python3 -m unittest test_utils.py`  
+`python3 -m unittest test_client.py`
+
+---
+
 Execute your tests with
 ```$ python -m unittest path/to/test_file.py```
 
